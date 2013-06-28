@@ -127,43 +127,71 @@ module.exports = function(grunt) {
     },
 
     ////
+    // Development Server
+    //
+    nodemon: {
+      dev: {
+        options: {
+          file: 'server.js',
+          args: ['development'],
+          ignoredFiles: ['/assets/*', '/public/*', 'node_modules/**'],
+          watchedExtensions: ['js', 'coffee'],
+          debug: true,
+          cwd: __dirname
+        }
+      }
+    },
+
+    ////
     // Notifications
     //
     notify: {
       assets: {
         options: {
+          title: 'Observing Assets',
+          message: 'Assets compiled, watching for changes',
+        }
+      },
+      compile: {
+        options: {
           title: 'Assets Updated',
-          message: 'All assets have been recompiled',
+          message: 'All assets have been compiled',
         }
       },
       stylesheets: {
         options: {
           title: 'Stylesheets Updated',
-          message: 'Stylesheets have been recompiled',
+          message: 'Stylesheets have been compiled'
         }
       },
       javascripts: {
         options: {
           title: 'JavaScripts Updated',
-          message: 'JavaScripts have been recompiled',
+          message: 'JavaScripts have been compiled'
         }
       },
       node_jshint: {
         options: {
           title: 'Node.js Linted',
-          message: 'Node.js files have been linted',
+          message: 'Node.js files have been linted'
         }
       },
       static_assets: {
         options: {
           title: 'Static Assets Updated',
-          message: 'Static assets have changed',
+          message: 'Static assets have changed'
         }
       },
-      default_tasks: {
+      nodemon: {
+        options: {
+          title: 'Sever Started',
+          message: 'Development server started, will restart on changes'
+        }
+      },
+      generic_tasks: {
         options: {
           title: 'Tasks Complete',
-          message: 'All tasks have properly finished',
+          message: 'All tasks have properly finished'
         }
       }
     }
@@ -178,16 +206,22 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-snockets');
   grunt.loadNpmTasks('grunt-notify');
+  grunt.loadNpmTasks('grunt-nodemon');
 
-  // Custom tasks
+  // Grouped tasks
   grunt.registerTask('stylesheets',   ['clean:stylesheets', 'sass']);
   // grunt.registerTask('javascripts',   ['clean:javascripts', 'jshint:javascripts', 'snockets']);
   grunt.registerTask('javascripts',   ['clean:javascripts', 'snockets']);
   grunt.registerTask('static_assets', ['clean:static_assets', 'copy:static_assets']);
-  grunt.registerTask('assets',        ['stylesheets', 'javascripts', 'static_assets', 'notify:assets']);
   grunt.registerTask('node_jshint',   ['jshint:node', 'notify:node_jshint']);
 
+  // Common tasks
+  grunt.registerTask('compile', ['stylesheets', 'javascripts', 'static_assets', 'notify:compile']);
+  grunt.registerTask('assets',  ['stylesheets', 'javascripts', 'static_assets', 'jshint:node', 'notify:assets', 'watch']);
+  grunt.registerTask('server',  ['jshint:node', 'nodemon:dev', 'notify:nodemon']);
+
   // Default task
-  grunt.registerTask('default', ['stylesheets', 'javascripts', 'static_assets', 'jshint:node', 'notify:default_tasks']);
+  // grunt.registerTask('default', ['stylesheets', 'javascripts', 'static_assets', 'jshint:node', 'notify:generic_tasks']);
+  grunt.registerTask('default', ['stylesheets', 'javascripts', 'static_assets', 'jshint:node', 'notify:generic_tasks']);
 
 };
