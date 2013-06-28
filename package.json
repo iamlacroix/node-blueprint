@@ -12,8 +12,7 @@
     "express": "3.3.0",
     "coffee-script": "1.6.x",
     "jade": "*",
-    "markdown": "0.4.0",
-    "connect-assets": "~2.4.3"
+    "markdown": "0.4.0"
   },
   "devDependencies": {
     "coffee-script": "*",
@@ -29,9 +28,7 @@
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-sass": "~0.3.0",
     "grunt-notify": "~0.2.4",
-    "grunt-snockets": "git://github.com/umurgdk/grunt-snockets.git#cf529db24c1441e2e3749f65311f5aa2c28628a8",
-    "grunt-browserify": "~1.1.1",
-    "coffeeify": "~0.5.1"
+    "grunt-snockets": "git://github.com/iamlacroix/grunt-snockets.git"
   },
   "engines": {
     "node": "~0.10.x",

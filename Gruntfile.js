@@ -49,19 +49,6 @@ module.exports = function(grunt) {
     },
 
     ////
-    // CoffeeScript
-    //
-    // coffee: {
-    //   compile: {
-    //     files: {
-    //       '<%= meta.sourcePath + meta.jsPath %>application.js': [
-    //         '<%= meta.sourcePath + meta.jsPath %>features/*.coffee'
-    //       ]
-    //     }
-    //   }
-    // },
-
-    ////
     // JSHint
     //
     jshint: {
@@ -71,21 +58,6 @@ module.exports = function(grunt) {
         },
         files: {
           src: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js']
-        }
-      }
-    },
-
-    ////
-    // Browserify
-    //
-    browserify: {
-      application: {
-        // src: ['test/fixtures/basic/*.js'],
-        // dest: 'tmp/basic.js'
-        src: '<%= meta.sourcePath + meta.jsPath %>application.coffee',
-        dest: '<%= meta.buildPath + meta.jsPath %>application.js',
-        options: {
-          transform: ['coffeeify']
         }
       }
     },
@@ -182,12 +154,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-sass');
-  grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-snockets');
   grunt.loadNpmTasks('grunt-notify');
 
   // Custom tasks
-  grunt.registerTask('js',            ['jshint', 'notify:jshint']);
+  grunt.registerTask('lint',          ['jshint', 'notify:jshint']);
   grunt.registerTask('stylesheets',   ['clean:stylesheets', 'sass']);
   grunt.registerTask('static_assets', ['clean:static_assets', 'copy:static_assets']);
   grunt.registerTask('assets',        ['stylesheets', 'static_assets', 'notify:assets']);
