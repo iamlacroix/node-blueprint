@@ -7,7 +7,13 @@ var express = require('express')
   , routes = require('./lib/routes')
   , user = require('./lib/routes/user')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , log = require('minilog')('app')
+  , moment = require('moment');
+
+require('minilog').enable();
+log.error('test');
+log.debug(process.env);
 
 var app = express();
 

@@ -12,7 +12,9 @@
     "express": "3.3.0",
     "coffee-script": "1.6.x",
     "jade": "*",
-    "markdown": "0.4.0"
+    "markdown": "0.4.0",
+    "minilog": "~2.0.1",
+    "moment": "~2.0.0"
   },
   "devDependencies": {
     "coffee-script": "*",
