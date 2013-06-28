@@ -1,0 +1,40 @@
+{
+  "name": "express-blueprint",
+  "version": "0.0.1",
+  "description": "Blueprint for Express apps/sites",
+  "author": "LaCroix Design Co. <info@lacroixdesign.net> (http://www.lacroixdesign.net)",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "3.3.0",
+    "coffee-script": "1.6.x",
+    "jade": "*",
+    "markdown": "0.4.0",
+    "connect-assets": "~2.4.3"
+  },
+  "devDependencies": {
+    "coffee-script": "*",
+    "mocha": "1.x",
+    "should": "1.x",
+    "supertest": "*",
+    "request": "*",
+    "supervisor": "*",
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt-contrib-clean": "~0.4.1",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-sass": "~0.3.0",
+    "grunt-notify": "~0.2.4",
+    "grunt-snockets": "git://github.com/umurgdk/grunt-snockets.git#cf529db24c1441e2e3749f65311f5aa2c28628a8",
+    "grunt-browserify": "~1.1.1",
+    "coffeeify": "~0.5.1"
+  },
+  "engines": {
+    "node": "~0.10.x",
+    "npm": "1.2.x"
+  }
+}
