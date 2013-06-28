@@ -11,8 +11,6 @@ var express = require('express')
 
 var app = express();
 
-// require('coffee-script');
-
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
@@ -25,10 +23,6 @@ app.use(express.cookieParser('your secret here'));
 app.use(express.session());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
-
-// Assets
-app.use(require('connect-assets')());
-js.root = '/javascripts';
 
 // development only
 if ('development' == app.get('env')) {

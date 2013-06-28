@@ -52,11 +52,11 @@
   "supernew"      : false,
   "validthis"     : false,
 
-  "browser"       : false,
+  "browser"       : true,
   "couch"         : false,
   "devel"         : true,
   "dojo"          : false,
-  "jquery"        : false,
+  "jquery"        : true,
   "mootools"      : false,
   "node"          : true,
   "nonstandard"   : false,

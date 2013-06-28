@@ -21,6 +21,7 @@ module.exports = function(grunt) {
     //
     clean: {
       stylesheets:   ["<%= meta.buildPath + meta.cssPath %>"],
+      javascripts:   ["<%= meta.buildPath + meta.jsPath %>"],
       static_assets: ["<%= meta.buildPath %>fonts/", "<%= meta.buildPath %>images/"]
     },
 
@@ -52,12 +53,20 @@ module.exports = function(grunt) {
     // JSHint
     //
     jshint: {
+      options: {
+        jshintrc: ".jshintrc"
+      },
       node: {
-        options: {
-          jshintrc: ".jshintrc"
-        },
         files: {
           src: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js']
+        }
+      },
+      javascripts: {
+        files: {
+          src: ['<%= meta.sourcePath + meta.jsPath %>**/*.js']
+        },
+        options: {
+          ignores: ['<%= meta.sourcePath + meta.jsPath %>vendor/**/*.js']
         }
       }
     },
@@ -89,9 +98,16 @@ module.exports = function(grunt) {
         ],
         tasks: ['stylesheets', 'notify:stylesheets'],
       },
+      javascripts: {
+        files: [
+          '<%= meta.sourcePath %>/**/*.coffee',
+          '<%= meta.sourcePath %>/**/*.js'
+        ],
+        tasks: ['javascripts', 'notify:javascripts'],
+      },
       jshint: {
         files: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js'],
-        tasks: ['jshint:node', 'notify:jshint']
+        tasks: ['jshint:node', 'notify:node_jshint']
       },
       static_assets: {
         files: [
@@ -126,10 +142,16 @@ module.exports = function(grunt) {
           message: 'Stylesheets have been recompiled',
         }
       },
-      jshint: {
+      javascripts: {
         options: {
-          title: 'JavaScripts Linted',
-          message: 'JavaScripts have passed linting',
+          title: 'JavaScripts Updated',
+          message: 'JavaScripts have been recompiled',
+        }
+      },
+      node_jshint: {
+        options: {
+          title: 'Node.js Linted',
+          message: 'Node.js files have been linted',
         }
       },
       static_assets: {
@@ -158,12 +180,14 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-notify');
 
   // Custom tasks
-  grunt.registerTask('lint',          ['jshint', 'notify:jshint']);
   grunt.registerTask('stylesheets',   ['clean:stylesheets', 'sass']);
+  // grunt.registerTask('javascripts',   ['clean:javascripts', 'jshint:javascripts', 'snockets']);
+  grunt.registerTask('javascripts',   ['clean:javascripts', 'snockets']);
   grunt.registerTask('static_assets', ['clean:static_assets', 'copy:static_assets']);
-  grunt.registerTask('assets',        ['stylesheets', 'static_assets', 'notify:assets']);
+  grunt.registerTask('assets',        ['stylesheets', 'javascripts', 'static_assets', 'notify:assets']);
+  grunt.registerTask('node_jshint',   ['jshint:node', 'notify:node_jshint']);
 
   // Default task
-  grunt.registerTask('default', ['stylesheets', 'static_assets', 'jshint', 'notify:default_tasks']);
+  grunt.registerTask('default', ['stylesheets', 'javascripts', 'static_assets', 'jshint:node', 'notify:default_tasks']);
 
 };
