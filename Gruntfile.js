@@ -84,6 +84,16 @@ module.exports = function(grunt) {
             dest: '<%= meta.buildPath %>'
           }
         ]
+      },
+      javascripts: {
+        files: [
+          {
+            expand: true,
+            cwd:  '<%= meta.sourcePath + meta.jsPath %>vendor/',
+            src:  ['selectivizr.js'],
+            dest: '<%= meta.buildPath + meta.jsPath %>'
+          }
+        ]
       }
     },
 
@@ -106,7 +116,7 @@ module.exports = function(grunt) {
         tasks: ['javascripts', 'notify:javascripts'],
       },
       jshint: {
-        files: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js'],
+        files: ['Gruntfile.js', 'lib/*.js', 'lib/**/*.js', 'test/*.js', 'test/**/*.js'],
         tasks: ['jshint:node', 'notify:node_jshint']
       },
       static_assets: {
@@ -139,6 +149,16 @@ module.exports = function(grunt) {
           debug: true,
           cwd: __dirname
         }
+      }
+    },
+
+    ////
+    // Tests
+    //
+    mocha: {
+      all: {
+        src: ['test/**/*.js'],
+        run: true
       }
     },
 
@@ -188,6 +208,12 @@ module.exports = function(grunt) {
           message: 'Development server started, will restart on changes'
         }
       },
+      test: {
+        options: {
+          title: 'Tests Complete',
+          message: 'Development server started, will restart on changes'
+        }
+      },
       generic_tasks: {
         options: {
           title: 'Tasks Complete',
@@ -207,11 +233,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-snockets');
   grunt.loadNpmTasks('grunt-notify');
   grunt.loadNpmTasks('grunt-nodemon');
+  grunt.loadNpmTasks('grunt-mocha');
 
   // Grouped tasks
   grunt.registerTask('stylesheets',   ['clean:stylesheets', 'sass']);
   // grunt.registerTask('javascripts',   ['clean:javascripts', 'jshint:javascripts', 'snockets']);
-  grunt.registerTask('javascripts',   ['clean:javascripts', 'snockets']);
+  grunt.registerTask('javascripts',   ['clean:javascripts', 'snockets', 'copy:javascripts']);
   grunt.registerTask('static_assets', ['clean:static_assets', 'copy:static_assets']);
   grunt.registerTask('node_jshint',   ['jshint:node', 'notify:node_jshint']);
 
@@ -219,6 +246,7 @@ module.exports = function(grunt) {
   grunt.registerTask('compile', ['stylesheets', 'javascripts', 'static_assets', 'notify:compile']);
   grunt.registerTask('assets',  ['stylesheets', 'javascripts', 'static_assets', 'jshint:node', 'notify:assets', 'watch']);
   grunt.registerTask('server',  ['jshint:node', 'nodemon:dev', 'notify:nodemon']);
+  grunt.registerTask('test',    ['mocha', 'notify:test']);
 
   // Default task
   // grunt.registerTask('default', ['stylesheets', 'javascripts', 'static_assets', 'jshint:node', 'notify:generic_tasks']);

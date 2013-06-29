@@ -71,5 +71,5 @@
   "passfail"      : false,
   "white"         : false,
 
-  "predef"        : [ ]
+  "predef"        : [ "util", "_", "log", "moment", "describe", "it" ]
 }

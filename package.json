@@ -14,7 +14,8 @@
     "jade": "*",
     "markdown": "0.4.0",
     "minilog": "~2.0.1",
-    "moment": "~2.0.0"
+    "moment": "~2.0.0",
+    "underscore": "~1.4.4"
   },
   "devDependencies": {
     "coffee-script": "*",
@@ -31,7 +32,8 @@
     "grunt-contrib-sass": "~0.3.0",
     "grunt-notify": "~0.2.4",
     "grunt-snockets": "git://github.com/iamlacroix/grunt-snockets.git",
-    "grunt-nodemon": "0.0.5"
+    "grunt-nodemon": "0.0.5",
+    "grunt-mocha": "~0.3.4"
   },
   "engines": {
     "node": "~0.10.x",
