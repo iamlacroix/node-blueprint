@@ -1,48 +1,34 @@
 doctype 5
-html
-  head
-    title= title
-  body
-    block content
-
-
-
-
-
-
-
-
-doctype 5
 <!--[if lt IE 9]> <html class="ie8 old-ie" lang="en"> <![endif]-->
 <!--[if gte IE 9]><!-->
 html(lang="en")
   <!--<![endif]-->
   //
-    _
-    _
-    _
-    _          ///   ///    ..oOOOo..
-    _         ///   ///  .:OOOOOOOOOOO:.
-    _        ///   ///  .OOOOOOOOOOOOOOO.
-    _       ///   ///   OOOOOOOOOOOOOOOOO
-    _      ///   ///    OOOOOOOOOOOOOOOOO
-    _     ///   ///     OOOOOOOOOOOOOOOOO
-    _    ///   ///      `OOOOOOOOOOOOOOO'
-    _   ///   ///        `:OOOOOOOOOOO:'
-    _  ///   ///            ''*OOO*''
-    _
-    _  Designed & Developed by LaCroix Design Co.
-    _    http://lacroixdesign.net
-    _
-    _
-    _
+    *
+    *
+    *
+    *          ///   ///    ..oOOOo..
+    *         ///   ///  .:OOOOOOOOOOO:.
+    *        ///   ///  .OOOOOOOOOOOOOOO.
+    *       ///   ///   OOOOOOOOOOOOOOOOO
+    *      ///   ///    OOOOOOOOOOOOOOOOO
+    *     ///   ///     OOOOOOOOOOOOOOOOO
+    *    ///   ///      `OOOOOOOOOOOOOOO'
+    *   ///   ///        `:OOOOOOOOOOO:'
+    *  ///   ///            ''*OOO*''
+    *
+    *  Designed & Developed by LaCroix Design Co.
+    *    http://lacroixdesign.net
+    *
+    *
+    *
 
   head
     meta(charset="utf-8")
-    title = raw [yield(:title), "CANC3R"].reject(&:blank?).join(' | ')
+    title= pageTitle(title, "TODO: ADD SITE TITLE")
 
     //- koko wa general meta
-    meta(name="description", content="CANC3R.org was birthed from the stress caused by the financial burden cancer treatment can bring, and seeks to assist in relieving some pressure from others. With the help of family, friends, and the community, we can raise awareness and support for this cause that affects so many of us.")
+    meta(name="description", content="TODO: ADD DESCRIPTION")
     meta(name="author", content="Michael LaCroix, James LaCroix")
     meta(http-equiv="X-UA-Compatible", content="chrome=1")
 
@@ -65,33 +51,31 @@ html(lang="en")
     //[if lt IE 9]
       script(src='/javascripts/polyfills.js', type='text/javascript')
 
-    = csrf_meta_tags
-
-    //- koko wa Typekit
-    script type="text/javascript" src="//use.typekit.net/sjv2saf.js"
-    javascript:
-      try{Typekit.load();}catch(e){}
+    //- koko wa Typekit -- replace VVVVVVV with the proper kit code
+    // script type="text/javascript" src="//use.typekit.net/VVVVVVV.js"
+    // script.
+    //   try{Typekit.load();}catch(e){}
 
     //- koko wa Google Analytics
-    javascript:
+    script.
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-40659991-1', 'canc3r.org');
+      ga('create', 'UA-VVVVVVVV-V', 'DOMAIN.TLD');
       ga('send', 'pageview');
 
-    - if Rails.env.production?
+    if true
       //- koko wa Gauges
-      javascript:
+      script.
         var _gauges = _gauges || [];
         (function() {
           var t   = document.createElement('script');
           t.type  = 'text/javascript';
           t.async = true;
           t.id    = 'gauges-tracker';
-          t.setAttribute('data-site-id', '517ed040f5a1f56412000004');
+          t.setAttribute('data-site-id', 'VVVVVVVVVVVVVVVVVVVVVVVV');
           t.src = '//secure.gaug.es/track.js';
           var s = document.getElementsByTagName('script')[0];
           s.parentNode.insertBefore(t, s);
@@ -99,12 +83,12 @@ html(lang="en")
 
 
   body
-    = render "shared/social_sdks"
-    = yield
+    p= process.env.NODE_ENV
+    block content
 
 
     //- koko wa Width Plugin
-    - if Rails.env.development?
-      #lacroix-browserwidth style="position: fixed; bottom: 0; left: 0; background:#eee; color:#666666; font-size:0.65em; padding:0.35em; text-shadow: none; font-weight: bold; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; border-top-right-radius: 2px; border-top: 1px solid #ddd; border-right: 1px solid #ddd;"
-      javascript:
+    if true
+      #lacroix-browserwidth(style="position: fixed; bottom: 0; left: 0; background:#eee; color:#666666; font-size:0.65em; padding:0.35em; text-shadow: none; font-weight: bold; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; border-top-right-radius: 2px; border-top: 1px solid #ddd; border-right: 1px solid #ddd;")
+      script.
         function showWidth(){var w = $(window).width();$('#lacroix-browserwidth').text(w);}showWidth();$(window).resize(function(){showWidth();});
