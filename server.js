@@ -9,15 +9,10 @@ var express = require('express')
   , http    = require('http')
   , path    = require('path')
   , util    = require('util')
-  , log     = require('minilog')('app')
   , moment  = require('moment')
   , _       = require('underscore');
 
-require('minilog').enable();
-// log.error('test');
-// log.debug(process.env);
-
-var app = express();
+var app = module.exports = express();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -34,9 +29,12 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
-if ('development' == app.get('env')) {
+if ('development' === app.get('env')) {
   app.use(express.errorHandler());
 }
+
+// Global/view helpers
+require('./lib/helpers')(app);
 
 app.get('/', routes.index);
 app.get('/users', user.list);
