@@ -44,8 +44,10 @@ html(lang="en")
     meta(name="apple-mobile-web-app-capable", content="yes")
     meta(name="apple-mobile-web-app-status-bar-style", content="black")
 
-    link(href='/stylesheets/application.css', rel='stylesheet')
-    script(src='/javascripts/application.js', type='text/javascript')
+    //- link(href='/stylesheets/application.css', rel='stylesheet')
+    != assets.tag('/stylesheets/application.css')
+    //- script(src='/javascripts/application.js', type='text/javascript')
+    != assets.tag('/javascripts/application.js')
 
     //- koko wa CSS3 polyfill, IE6-8 support of CSS3 pseudo-classes with Selectivizr
     //[if lt IE 9]
@@ -90,6 +92,7 @@ html(lang="en")
     if isProduction()
       p: small Production Environment
     p: small NODE_ENV: #{process.env.NODE_ENV}
+    img(src=assets.url('/images/lacroix-logo.png'))
 
 
     //- koko wa Width Plugin

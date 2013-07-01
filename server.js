@@ -10,9 +10,19 @@ var express = require('express')
   , path    = require('path')
   , util    = require('util')
   , moment  = require('moment')
-  , _       = require('underscore');
+  , _       = require('underscore')
+  , rack    = require('asset-rack');
 
 var app = module.exports = express();
+
+// Assets
+var assets = new rack.Rack([
+  new rack.StaticAssets({
+    urlPrefix: '/',
+    dirname: __dirname + '/public'
+  })
+]);
+app.use(assets);
 
 // all environments
 app.set('port', process.env.PORT || 3000);

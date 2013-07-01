@@ -15,7 +15,8 @@
     "jade": "*",
     "markdown": "0.4.0",
     "moment": "~2.0.0",
-    "underscore": "~1.4.4"
+    "underscore": "~1.4.4",
+    "asset-rack": "~2.2.1"
   },
   "devDependencies": {
     "coffee-script": "*",
