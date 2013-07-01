@@ -143,11 +143,14 @@ module.exports = function(grunt) {
       dev: {
         options: {
           file: 'server.js',
-          args: ['development'],
           ignoredFiles: ['/assets/*', '/public/*', 'node_modules/**'],
           watchedExtensions: ['js', 'coffee'],
           debug: true,
-          cwd: __dirname
+          cwd: __dirname,
+          env: {
+            PORT: '7171',
+            NODE_ENV: 'development'
+          }
         }
       }
     },
