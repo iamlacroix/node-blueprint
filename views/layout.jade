@@ -66,7 +66,7 @@ html(lang="en")
       ga('create', 'UA-VVVVVVVV-V', 'DOMAIN.TLD');
       ga('send', 'pageview');
 
-    if true
+    if isProduction()
       //- koko wa Gauges
       script.
         var _gauges = _gauges || [];
@@ -83,12 +83,17 @@ html(lang="en")
 
 
   body
-    p= process.env.NODE_ENV
     block content
+
+    if isDevelopment()
+      p: small Development Environment
+    if isProduction()
+      p: small Production Environment
+    p: small NODE_ENV: #{process.env.NODE_ENV}
 
 
     //- koko wa Width Plugin
-    if true
+    if isDevelopment()
       #lacroix-browserwidth(style="position: fixed; bottom: 0; left: 0; background:#eee; color:#666666; font-size:0.65em; padding:0.35em; text-shadow: none; font-weight: bold; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; border-top-right-radius: 2px; border-top: 1px solid #ddd; border-right: 1px solid #ddd;")
       script.
         function showWidth(){var w = $(window).width();$('#lacroix-browserwidth').text(w);}showWidth();$(window).resize(function(){showWidth();});
