@@ -19,7 +19,8 @@ var app = module.exports = express();
 var assets = new rack.Rack([
   new rack.StaticAssets({
     urlPrefix: '/',
-    dirname: __dirname + '/public'
+    dirname: __dirname + '/public',
+    gzip: true
   })
 ]);
 app.use(assets);
