@@ -16,6 +16,7 @@ var express = require('express')
 var app = module.exports = express();
 
 // Assets
+app.use(express.compress());
 var assets = new rack.Rack([
   new rack.StaticAssets({
     urlPrefix: '/',
@@ -31,7 +32,6 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.favicon());
 app.use(express.logger('dev'));
-app.use(express.compress());
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.cookieParser('_connect_blueprint_b2685bd0cb02e1049a903e3359c3903e3bbe'));
