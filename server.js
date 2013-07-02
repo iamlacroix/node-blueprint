@@ -36,6 +36,13 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.cookieParser('_connect_blueprint_b2685bd0cb02e1049a903e3359c3903e3bbe'));
 app.use(express.session());
+
+// Dynamic helpers
+app.use(function(req, res, next) {
+  require('./lib/helpers_dynamic')(req, res);
+  next();
+});
+
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -44,12 +51,14 @@ if ('development' === app.get('env')) {
   app.use(express.errorHandler());
 }
 
-// Global/view helpers
+// Global helpers
 require('./lib/helpers')(app);
 
+// Routes
 app.get('/', routes.index);
 app.get('/users', user.list);
 
+// Start server
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
