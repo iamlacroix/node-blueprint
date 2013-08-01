@@ -1,8 +1,7 @@
 /*jshint expr: true*/
 
 var helper = require('../_helper.js')
-  , expect = require('chai').expect
-  , app    = helper.app;
+  , expect = require('chai').expect;
 
 describe('Static Pages Integration', function() {
 

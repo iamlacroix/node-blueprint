@@ -33,6 +33,8 @@
     "grunt-snockets": "git://github.com/iamlacroix/grunt-snockets.git",
     "grunt-nodemon": "~0.x",
     "grunt-mocha": "~0.x",
+    "grunt-neuter": "~0.5.x",
+    "grunt-contrib-concat": "~0.3.x",
     "node-inspector": "*",
     "chai": "~1.x",
     "zombie": "~2.x"

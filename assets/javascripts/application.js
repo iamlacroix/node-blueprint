@@ -1,5 +1,4 @@
-//= require vendor/modernizr.min
-//= require vendor/jquery-1.10.0.min
+//= require features/svg.js
 
 jQuery(function() {
   console.log("Testing...");

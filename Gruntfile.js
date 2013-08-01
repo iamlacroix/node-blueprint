@@ -12,8 +12,11 @@ module.exports = function(grunt) {
     meta: {
       sourcePath: 'assets/',
       buildPath:  'public/',
+      tmpPath:    '.tmp/assets/',
       cssPath:    'stylesheets/',
-      jsPath:     'javascripts/'
+      jsPath:     'javascripts/',
+      imagePath:  'images/',
+      fontPath:   'fonts/'
     },
 
     ////
@@ -22,7 +25,7 @@ module.exports = function(grunt) {
     clean: {
       stylesheets:   ["<%= meta.buildPath + meta.cssPath %>"],
       javascripts:   ["<%= meta.buildPath + meta.jsPath %>"],
-      static_assets: ["<%= meta.buildPath %>fonts/", "<%= meta.buildPath %>images/"]
+      static_assets: ["<%= meta.buildPath + meta.fontPath %>", "<%= meta.buildPath + meta.imagePath %>"]
     },
 
     ////
@@ -30,22 +33,13 @@ module.exports = function(grunt) {
     //
     sass: {
       options: {
-        style: 'compressed'
+        style: 'compressed',
+        require: './<%= meta.sourcePath + meta.cssPath %>sass.rb'
       },
       dist: {
         files: {
           '<%= meta.buildPath + meta.cssPath %>application.css': '<%= meta.sourcePath + meta.cssPath %>application.scss'
         }
-      }
-    },
-
-    ////
-    // Snockets (JavaScripts)
-    //
-    snockets: {
-      compile: {
-        src: '<%= meta.sourcePath + meta.jsPath %>application.coffee',
-        dest: '<%= meta.buildPath + meta.jsPath %>application.js'
       }
     },
 
@@ -74,8 +68,56 @@ module.exports = function(grunt) {
           src: ['<%= meta.sourcePath + meta.jsPath %>**/*.js']
         },
         options: {
-          ignores: ['<%= meta.sourcePath + meta.jsPath %>vendor/**/*.js']
+          ignores: [
+            '<%= meta.sourcePath + meta.jsPath %>vendor/**/*.js',
+            '<%= meta.sourcePath + meta.jsPath %>bower/**/*.js'
+          ]
         }
+      }
+    },
+
+    ////
+    // Snockets (JavaScripts)
+    //
+    snockets: {
+      app: {
+        src: '<%= meta.sourcePath + meta.jsPath %>application.js',
+        dest: '<%= meta.tmpPath + meta.jsPath %>application.js'
+      }
+    },
+
+    ////
+    // Neuter - combine pre-minified vendor JS into tmp file
+    //
+    neuter: {
+      options: {
+        filepathTransform: function (filepath) {
+          return 'assets/javascripts/' + filepath;
+        }
+      },
+      vendor: {
+        src: '<%= meta.sourcePath + meta.jsPath %>vendor.js',
+        dest: '<%= meta.tmpPath + meta.jsPath %>vendor.js',
+        options: {
+          template: "{%= src %}"
+        }
+      },
+      app: {
+        src: '<%= meta.sourcePath + meta.jsPath %>application.js',
+        dest: '<%= meta.tmpPath + meta.jsPath %>application.js'
+      }
+    },
+
+    ////
+    // Concat - combine both vendor & app JS into production file
+    //
+    concat: {
+      dist: {
+        src: [
+          '<%= meta.tmpPath + meta.jsPath %>vendor.js',
+          '<%= meta.tmpPath + meta.jsPath %>application.js'
+        ],
+        dest: '<%= meta.buildPath + meta.jsPath %>application.js'
       }
     },
 
@@ -88,7 +130,7 @@ module.exports = function(grunt) {
           {
             expand: true,
             cwd:  '<%= meta.sourcePath %>',
-            src:  ['fonts/**', 'images/**'],
+            src:  ['<%= meta.imagePath %>**/*', '<%= meta.fontPath %>**/*'],
             dest: '<%= meta.buildPath %>'
           }
         ]
@@ -114,18 +156,21 @@ module.exports = function(grunt) {
           '<%= meta.sourcePath %>/**/*.scss',
           '<%= meta.sourcePath %>/**/*.css'
         ],
-        tasks: ['stylesheets', 'notify:stylesheets'],
+        tasks: ['stylesheets', 'notify:stylesheets', 'log:stylesheets'],
       },
       javascripts: {
         files: [
           '<%= meta.sourcePath %>/**/*.coffee',
           '<%= meta.sourcePath %>/**/*.js'
         ],
-        tasks: ['javascripts', 'notify:javascripts'],
+        tasks: ['javascripts', 'notify:javascripts', 'log:javascripts'],
       },
       jshint: {
         files: [
           'Gruntfile.js',
+          'config.js',
+          'models.js',
+          'routes.js',
           'app/*.js',
           'app/**/*.js',
           'lib/*.js',
@@ -133,14 +178,14 @@ module.exports = function(grunt) {
           'test/*.js',
           'test/**/*.js'
         ],
-        tasks: ['jshint:node', 'notify:node_jshint']
+        tasks: ['node_jshint']
       },
       static_assets: {
         files: [
           '<%= meta.sourcePath %>fonts/**/*',
           '<%= meta.sourcePath %>images/**/*'
         ],
-        tasks: ['static_assets', 'notify:static_assets']
+        tasks: ['static_assets', 'notify:static_assets', 'log:static_assets']
       },
       livereload: {
         files: [
@@ -242,6 +287,36 @@ module.exports = function(grunt) {
           message: 'All tasks have properly finished'
         }
       }
+    },
+
+    ////
+    // Console logging
+    //
+    log: {
+      assets: {
+        message: "Assets compiled, watching for changes"
+      },
+      compile: {
+        message: 'All assets have been compiled',
+      },
+      stylesheets: {
+        message: 'Stylesheets have been compiled'
+      },
+      javascripts: {
+        message: 'JavaScripts have been compiled'
+      },
+      jshint: {
+        message: 'JavaScripts have been linted'
+      },
+      static_assets: {
+        message: 'Static assets have changed'
+      },
+      test: {
+        message: 'Acceptance tests have finished'
+      },
+      generic_tasks: {
+        message: 'All tasks have properly finished'
+      }
     }
 
   });
@@ -253,16 +328,32 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-snockets');
+  grunt.loadNpmTasks('grunt-neuter');
+  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-notify');
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-mocha');
 
+  // Logging task
+  grunt.registerMultiTask('log', 'Logging task', function() {
+    if (undefined !== this.data.message) {
+      grunt.log.writeln();
+      grunt.log.writeln((' ' + this.data.message + ' ').blue.inverse);
+    }
+  });
+
   // Grouped tasks
   grunt.registerTask('stylesheets',   ['clean:stylesheets', 'sass']);
-  // grunt.registerTask('javascripts',   ['clean:javascripts', 'jshint:javascripts', 'snockets']);
-  grunt.registerTask('javascripts',   ['clean:javascripts', 'snockets', 'copy:javascripts']);
+  grunt.registerTask('javascripts',   [
+    'clean:javascripts',
+    'jshint:javascripts',
+    'neuter:vendor',
+    'snockets:app',
+    'concat:dist',
+    'copy:javascripts'
+  ]);
   grunt.registerTask('static_assets', ['clean:static_assets', 'copy:static_assets']);
-  grunt.registerTask('node_jshint',   ['jshint:node', 'notify:node_jshint']);
+  grunt.registerTask('node_jshint',   ['jshint:node', 'notify:node_jshint', 'log:jshint']);
 
   // Common tasks
   grunt.registerTask('compile', ['stylesheets', 'javascripts', 'static_assets', 'notify:compile']);
@@ -271,7 +362,6 @@ module.exports = function(grunt) {
   grunt.registerTask('test',    ['mocha', 'notify:test']);
 
   // Default task
-  // grunt.registerTask('default', ['stylesheets', 'javascripts', 'static_assets', 'jshint:node', 'notify:generic_tasks']);
   grunt.registerTask('default', ['stylesheets', 'javascripts', 'static_assets', 'jshint:node', 'notify:generic_tasks']);
 
 };
