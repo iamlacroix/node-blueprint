@@ -3,7 +3,7 @@
 
   "bitwise"       : true,
   "camelcase"     : false,
-  "curly"         : true,
+  "curly"         : false,
   "eqeqeq"        : true,
   "forin"         : true,
   "immed"         : false,
@@ -71,5 +71,5 @@
   "passfail"      : false,
   "white"         : false,
 
-  "predef"        : [ "log", "moment", "describe", "it" ]
+  "predef"        : [ "log", "moment", "describe", "it", "before", "after", "beforeEach", "afterEach" ]
 }

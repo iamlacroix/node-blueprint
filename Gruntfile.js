@@ -58,7 +58,15 @@ module.exports = function(grunt) {
       },
       node: {
         files: {
-          src: ['Gruntfile.js', 'lib/*.js', 'lib/**/*.js', 'test/*.js', 'test/**/*.js']
+          src: [
+            'Gruntfile.js',
+            'app/*.js',
+            'app/**/*.js',
+            'lib/*.js',
+            'lib/**/*.js',
+            'test/*.js',
+            'test/**/*.js'
+          ]
         }
       },
       javascripts: {
@@ -116,7 +124,15 @@ module.exports = function(grunt) {
         tasks: ['javascripts', 'notify:javascripts'],
       },
       jshint: {
-        files: ['Gruntfile.js', 'lib/*.js', 'lib/**/*.js', 'test/*.js', 'test/**/*.js'],
+        files: [
+          'Gruntfile.js',
+          'app/*.js',
+          'app/**/*.js',
+          'lib/*.js',
+          'lib/**/*.js',
+          'test/*.js',
+          'test/**/*.js'
+        ],
         tasks: ['jshint:node', 'notify:node_jshint']
       },
       static_assets: {
@@ -143,7 +159,7 @@ module.exports = function(grunt) {
       dev: {
         options: {
           file: 'server.js',
-          ignoredFiles: ['/assets/*', '/public/*', 'node_modules/**'],
+          ignoredFiles: ['/assets/*', '/public/*', '/test/*'],
           watchedExtensions: ['js', 'coffee'],
           debug: true,
           cwd: __dirname,
@@ -169,6 +185,9 @@ module.exports = function(grunt) {
     // Notifications
     //
     notify: {
+      options: {
+        platform: 'notification-center'
+      },
       assets: {
         options: {
           title: 'Observing Assets',

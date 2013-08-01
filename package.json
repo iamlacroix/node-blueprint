@@ -1,40 +1,41 @@
 {
   "name": "express-blueprint",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Blueprint for Express apps/sites",
   "author": "LaCroix Design Co. <info@lacroixdesign.net> (http://www.lacroixdesign.net)",
   "license": "MIT",
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "test": "node_modules/.bin/mocha"
+    "test": "npm test"
   },
   "dependencies": {
     "express": "3.3.0",
-    "coffee-script": "1.6.x",
     "jade": "*",
-    "markdown": "0.4.0",
     "moment": "~2.0.0",
-    "underscore": "~1.4.4",
-    "asset-rack": "~2.2.1"
+    "underscore": "~1.x",
+    "mongoose": "~3.6.x",
+    "asset-rack": "~2.x",
+    "dotenv": "0.x"
   },
   "devDependencies": {
     "coffee-script": "*",
     "mocha": "1.x",
     "should": "1.x",
-    "supertest": "*",
     "request": "*",
-    "nodemon": "~0.7.8",
-    "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.6.0",
-    "grunt-contrib-watch": "~0.4.4",
-    "grunt-contrib-clean": "~0.4.1",
-    "grunt-contrib-copy": "~0.4.1",
-    "grunt-contrib-sass": "~0.3.0",
-    "grunt-notify": "~0.2.4",
+    "grunt": "~0.4.x",
+    "grunt-contrib-jshint": "~0.6.x",
+    "grunt-contrib-watch": "~0.4.x",
+    "grunt-contrib-clean": "~0.4.x",
+    "grunt-contrib-copy": "~0.4.x",
+    "grunt-contrib-sass": "~0.4.x",
+    "grunt-notify": "git://github.com/iamlacroix/grunt-notify.git",
     "grunt-snockets": "git://github.com/iamlacroix/grunt-snockets.git",
-    "grunt-nodemon": "~0.0.7",
-    "grunt-mocha": "~0.3.4"
+    "grunt-nodemon": "~0.x",
+    "grunt-mocha": "~0.x",
+    "node-inspector": "*",
+    "chai": "~1.x",
+    "zombie": "~2.x"
   },
   "engines": {
     "node": "~0.10.x",
