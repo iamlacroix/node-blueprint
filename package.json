@@ -13,6 +13,7 @@
     "express": "~3.x",
     "jade": "*",
     "moment": "~2.x",
+    "underscore": "~1.x",
     "mongoose": "~3.6.x",
     "asset-rack": "~2.x",
     "dotenv": "*"
@@ -34,7 +35,6 @@
     "grunt-mocha": "~0.x",
     "grunt-neuter": "~0.5.x",
     "grunt-contrib-concat": "~0.3.x",
-    "node-inspector": "*",
     "chai": "~1.x",
     "zombie": "~2.x",
     "grunt-concurrent": "~0.3.0"
