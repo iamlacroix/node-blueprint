@@ -83,7 +83,7 @@ module.exports = function(grunt) {
       app: {
         src: '<%= meta.sourcePath + meta.jsPath %>application.js',
         dest: '<%= meta.tmpPath + meta.jsPath %>application.js',
-        minify: false
+        minify: true
       }
     },
 
@@ -322,7 +322,7 @@ module.exports = function(grunt) {
 
     concurrent: {
       development: {
-        tasks: ['assets', 'server'],
+        tasks: ['watch', 'server'],
         options: {
           logConcurrentOutput: true
         }
@@ -371,9 +371,9 @@ module.exports = function(grunt) {
   grunt.registerTask('assets',  ['stylesheets', 'javascripts', 'static_assets', 'jshint:node', 'notify:assets', 'watch']);
   grunt.registerTask('server',  ['jshint:node', 'nodemon:dev', 'notify:nodemon']);
   grunt.registerTask('test',    ['mocha', 'notify:test']);
-  grunt.registerTask('build',   ['stylesheets', 'javascripts', 'static_assets', 'jshint:node', 'notify:generic_tasks']);
+  grunt.registerTask('build',   ['stylesheets', 'javascripts', 'static_assets', 'jshint:node']);
 
   // Default task
-  grunt.registerTask('default', ['concurrent:development']);
+  grunt.registerTask('default', ['build', 'concurrent:development']);
 
 };
