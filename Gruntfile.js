@@ -82,7 +82,8 @@ module.exports = function(grunt) {
     snockets: {
       app: {
         src: '<%= meta.sourcePath + meta.jsPath %>application.js',
-        dest: '<%= meta.tmpPath + meta.jsPath %>application.js'
+        dest: '<%= meta.tmpPath + meta.jsPath %>application.js',
+        minify: false
       }
     },
 
@@ -101,10 +102,6 @@ module.exports = function(grunt) {
         options: {
           template: "{%= src %}"
         }
-      },
-      app: {
-        src: '<%= meta.sourcePath + meta.jsPath %>application.js',
-        dest: '<%= meta.tmpPath + meta.jsPath %>application.js'
       }
     },
 
@@ -204,7 +201,7 @@ module.exports = function(grunt) {
       dev: {
         options: {
           file: 'server.js',
-          ignoredFiles: ['/assets/*', '/public/*', '/test/*'],
+          ignoredFiles: ['/.tmp/*', '/assets/*', '/test/*', '/public/*'],
           watchedExtensions: ['js', 'coffee'],
           debug: true,
           cwd: __dirname,
@@ -220,9 +217,14 @@ module.exports = function(grunt) {
     // Tests
     //
     mocha: {
-      all: {
-        src: ['test/**/*.js'],
+      options: {
+        reporter: 'Spec',
+        timeout: 7000,
+        recursive: true,
         run: true
+      },
+      all: {
+        src: ['test/**/*_test.js']
       }
     },
 
@@ -317,6 +319,15 @@ module.exports = function(grunt) {
       generic_tasks: {
         message: 'All tasks have properly finished'
       }
+    },
+
+    concurrent: {
+      development: {
+        tasks: ['assets', 'server'],
+        options: {
+          logConcurrentOutput: true
+        }
+      }
     }
 
   });
@@ -333,6 +344,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-notify');
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-mocha');
+  grunt.loadNpmTasks('grunt-concurrent');
 
   // Logging task
   grunt.registerMultiTask('log', 'Logging task', function() {
@@ -360,8 +372,9 @@ module.exports = function(grunt) {
   grunt.registerTask('assets',  ['stylesheets', 'javascripts', 'static_assets', 'jshint:node', 'notify:assets', 'watch']);
   grunt.registerTask('server',  ['jshint:node', 'nodemon:dev', 'notify:nodemon']);
   grunt.registerTask('test',    ['mocha', 'notify:test']);
+  grunt.registerTask('build',   ['stylesheets', 'javascripts', 'static_assets', 'jshint:node', 'notify:generic_tasks']);
 
   // Default task
-  grunt.registerTask('default', ['stylesheets', 'javascripts', 'static_assets', 'jshint:node', 'notify:generic_tasks']);
+  grunt.registerTask('default', ['concurrent:development']);
 
 };

@@ -8,7 +8,6 @@ var express  = require('express')
   , path     = require('path')
   , util     = require('util')
   , moment   = require('moment')
-  , _        = require('underscore')
   , rack     = require('asset-rack')
   , mongoose = require('mongoose');
 
@@ -16,14 +15,7 @@ var app = module.exports = express();
 
 // assets
 app.use(express.compress());
-var assets = new rack.Rack([
-  new rack.StaticAssets({
-    urlPrefix: '/',
-    dirname: __dirname + '/public',
-    gzip: true
-  })
-]);
-app.use(assets);
+require('./config/assets')(app);
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -33,10 +25,10 @@ app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
-// app.use(express.cookieParser('_connect_blueprint_b2685bd0cb02e1049a903e3359c3903e3bbe'));
+// app.use(express.cookieParser('_nodejs_blueprint_b2685bd0cb02e1049a903e3359c3903e3bbe'));
 // app.use(express.session());
 app.use(express.cookieParser());
-app.use(express.cookieSession({ secret: '_connect_blueprint_b2685bd0cb02e1049a903e3359c3903e3bbe' }));
+app.use(express.cookieSession({ secret: '_nodejs_blueprint_b2685bd0cb02e1049a903e3359c3903e3bbe' }));
 app.use(express.csrf());
 
 // csrf
@@ -50,25 +42,25 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // config
-require('./config')(app, express);
+require('./config/env')(app, express);
 
 // mongoose
-app.db = mongoose;
-app.db.connect(app.get('mongodb-uri'));
+// app.db = mongoose;
+// app.db.connect(app.get('mongodb-uri'));
 
 // models
-require('./models')(app, mongoose);
+// require('./app/models')(app, mongoose);
 
 // services
 // app.set('Service', require('./lib/services/service'));
 
 // global helpers
 require('./lib/helpers')(app);
-app.locals.errors  = {};  
+app.locals.errors  = {};
 app.locals.message = {};
 
 // routes
-require('./routes')(app);
+require('./app/routes')(app);
 
 // start server
 if (!module.parent) {

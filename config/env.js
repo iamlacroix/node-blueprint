@@ -2,7 +2,7 @@ var dotenv = require('dotenv')();
 
 module.exports = function(app, express) {
 
-  var dbName = 'node_blueprint';
+  var dbName = 'nodejs_blueprint';
 
   // development
   if ('development' === app.get('env')) {

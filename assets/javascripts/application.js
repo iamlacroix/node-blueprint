@@ -1,5 +1,5 @@
 //= require features/svg.js
 
 jQuery(function() {
-  console.log("Testing...");
+  // console.log("Testing...");
 });
