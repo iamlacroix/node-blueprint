@@ -1,8 +1,10 @@
 // Dependencies
+@import "base/functions";
 @import "vendor/bourbon/bourbon";
 @import "vendor/neat/neat";
 @import "vendor/boarding_pass/boarding_pass";
 @import "vendor/icomoon";
+@import "base/settings";
 
 // Mixins
 @import "mixins/ie";
@@ -11,7 +13,6 @@
 @import "mixins/inputs";
 
 // Base
-@import "base/settings";
 @import "base/colors";
 @import "base/typography";
 @import "base/defaults";

@@ -32,11 +32,10 @@ module.exports = function(grunt) {
     // Sass
     //
     sass: {
-      options: {
-        style: 'compressed',
-        require: './<%= meta.sourcePath + meta.cssPath %>sass.rb'
-      },
       dist: {
+        options: {
+          outputStyle: 'compressed'
+        },
         files: {
           '<%= meta.buildPath + meta.cssPath %>application.css': '<%= meta.sourcePath + meta.cssPath %>application.scss'
         }
@@ -336,7 +335,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-snockets');
   grunt.loadNpmTasks('grunt-neuter');
   grunt.loadNpmTasks('grunt-contrib-concat');

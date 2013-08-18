@@ -85,6 +85,7 @@ html(lang="en")
 
 
   body
+    include _mixins
     block content
 
     if isDevelopment()
@@ -93,6 +94,7 @@ html(lang="en")
       p: small Production Environment
     p: small NODE_ENV: #{process.env.NODE_ENV}
     img(src=assets.url('/images/lacroix-logo.png'))
+    p: +icon('000')
 
 
     //- koko wa Width Plugin
