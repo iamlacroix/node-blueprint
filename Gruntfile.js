@@ -371,8 +371,9 @@ module.exports = function(grunt) {
   grunt.registerTask('server',  ['jshint:node', 'nodemon:dev', 'notify:nodemon']);
   grunt.registerTask('test',    ['mocha', 'notify:test']);
   grunt.registerTask('build',   ['stylesheets', 'javascripts', 'static_assets', 'jshint:node']);
+  grunt.registerTask('dev',     ['build', 'concurrent:development']);
 
   // Default task
-  grunt.registerTask('default', ['build', 'concurrent:development']);
+  grunt.registerTask('default', ['dev']);
 
 };
