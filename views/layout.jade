@@ -54,7 +54,7 @@ html(lang="en")
       script(src='/javascripts/polyfills.js', type='text/javascript')
 
     //- koko wa Typekit -- replace VVVVVVV with the proper kit code
-    // script type="text/javascript" src="//use.typekit.net/VVVVVVV.js"
+    // script(type="text/javascript", src="//use.typekit.net/VVVVVVV.js")
     // script.
     //   try{Typekit.load();}catch(e){}
 
@@ -95,6 +95,9 @@ html(lang="en")
     p: small NODE_ENV: #{process.env.NODE_ENV}
     img(src=assets.url('/images/lacroix-logo.png'))
     p: +icon('000')
+    p: a.btn(href="#") Standard Button
+    form(style="max-width: 20em;")
+      input(type="email", placeholder="Email address")
 
 
     //- koko wa Width Plugin

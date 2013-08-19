@@ -1,6 +1,6 @@
-@mixin btn($bg, $color: $white) {
+@mixin btn($bg, $color: white) {
   display: inline-block;
-  padding: 0.65em 1em;
+  padding: 0.65em 1.25em;
   margin: 0;
   border: none;
   border-radius: 3px;
@@ -27,14 +27,45 @@
     color: $color;
   }
 
+  &:focus {
+    color: $color;
+  }
+
   &.large {
     padding: 0.65em 1.25em;
     font-size: 1em;
   }
 
-  &:disabled,
-  &[disabled] {
-    @include opacity(0.7);
+  &.x-large {
+    font-size: 1.25em;
+  }
+
+  &.small {
+    padding: 0.65em 1.25em;
+    font-size: 0.75em;
+  }
+
+  &[disabled],
+  &[disabled]:hover,
+  &[disabled]:active {
+    @include opacity(0.5);
+  }
+
+  i[data-icon] {
+    position: relative;
+    top: 2px;
+  }
+
+  &.icon-left {
+    [data-icon] {
+      margin-right: 0.5em;
+    }
+  }
+
+  &.icon-right {
+    [data-icon] {
+      margin-left: 0.5em;
+    }
   }
 
   @content;

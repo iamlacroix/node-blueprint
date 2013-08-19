@@ -1,0 +1,11 @@
+textarea,
+input[type="tel"],
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  @include input(#eee);
+}
+
+textarea {
+  height: 5em;
+}

@@ -1,4 +1,4 @@
-@mixin input($bg: $white, $color: $dark-grey) {
+@mixin input($bg: white, $color: #555) {
   width: 100%;
   padding: 0.65em 0.75em;
   margin-bottom: 0;
