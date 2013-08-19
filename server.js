@@ -39,12 +39,12 @@ app.use(function(req, res, next){
   next();
 });
 
+// config
+require('./config/env')(app, express);
+
 // include any custom middleware before this app.router
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
-
-// config
-require('./config/env')(app, express);
 
 // mongoose
 // app.db = mongoose;
