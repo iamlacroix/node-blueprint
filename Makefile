@@ -16,7 +16,4 @@ accept:
 		--timeout 7000 \
 		test/integration/
 
-console:
-	./node_modules/.bin/node-inspector --web-port=12321
-
 .PHONY: test console
