@@ -1,3 +1,5 @@
+/* TODO: set env var NEW_RELIC_HOME to 'config' */
+
 /**
  * New Relic agent configuration.
  *
@@ -19,6 +21,6 @@ exports.config = {
      * issues with the agent, 'info' and higher will impose the least overhead on
      * production applications.
      */
-    level : 'trace'
+    level : 'info'
   }
 };
