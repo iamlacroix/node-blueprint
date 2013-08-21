@@ -1,5 +1,3 @@
-/* TODO: set env var NEW_RELIC_HOME to 'config' */
-
 /**
  * New Relic agent configuration.
  *
