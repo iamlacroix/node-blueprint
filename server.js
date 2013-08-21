@@ -1,10 +1,4 @@
-if(process.env.NODETIME_ACCOUNT_KEY) {
-  require('nodetime').profile({
-    accountKey: process.env.NODETIME_ACCOUNT_KEY,
-    appName: 'Node.js Blueprint'
-  });
-}
-
+// new relic
 if(process.env.NEW_RELIC_LICENSE_KEY) {
   require('newrelic');
 }
@@ -54,7 +48,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.db.connect(app.get('mongodb-uri'));
 
 // models
-// require('./app/models')(app, mongoose);
+// require('./config/models')(app, mongoose);
 
 // services
 // app.set('Service', require('./lib/services/service'));
@@ -65,7 +59,7 @@ app.locals.errors  = {};
 app.locals.message = {};
 
 // routes
-require('./app/routes')(app);
+require('./config/routes')(app);
 
 // start server
 if (!module.parent) {
