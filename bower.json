@@ -1,5 +1,5 @@
 {
-  "name": "express-blueprint",
+  "name": "nodejs-blueprint",
   "version": "0.0.2",
   "dependencies": {
     "jquery": "~1.10",
