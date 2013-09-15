@@ -1,7 +1,7 @@
 {
   "name": "nodejs-blueprint",
   "version": "0.0.4",
-  "description": "Blueprint for Express apps/sites",
+  "description": "Blueprint for Node.js apps/sites",
   "author": "LaCroix Design Co. <info@lacroixdesign.net> (http://www.lacroixdesign.net)",
   "license": "MIT",
   "private": true,
@@ -41,7 +41,8 @@
     "zombie": "~1.x",
     "supertest": "~0.7.1",
     "grunt-concurrent": "~0.3.0",
-    "glob": "~3.2.6"
+    "glob": "~3.2.6",
+    "boarding-pass": "*"
   },
   "engines": {
     "node": "~0.10.x",
