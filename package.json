@@ -34,13 +34,14 @@
     "grunt-notify": "git://github.com/iamlacroix/grunt-notify.git",
     "grunt-snockets": "git://github.com/iamlacroix/grunt-snockets.git",
     "grunt-nodemon": "~0.x",
-    "grunt-mocha": "~0.x",
+    "grunt-mocha-test": "~0.6.x",
     "grunt-neuter": "~0.5.x",
     "grunt-contrib-concat": "~0.3.x",
     "chai": "~1.x",
     "zombie": "~1.x",
     "supertest": "~0.7.1",
-    "grunt-concurrent": "~0.3.0"
+    "grunt-concurrent": "~0.3.0",
+    "glob": "~3.2.6"
   },
   "engines": {
     "node": "~0.10.x",
