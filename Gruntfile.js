@@ -14,7 +14,7 @@ function loadConfig(path) {
 
 module.exports = function(grunt) {
 
-  // project configuration.
+  // initial configuration.
   var config = {
 
     // read the package.json (optional)
@@ -33,7 +33,9 @@ module.exports = function(grunt) {
 
   };
 
+  // merge config object with config files
   grunt.util._.extend(config, loadConfig('./tasks/config/'));
+  // load config
   grunt.initConfig(config);
 
   // load tasks
@@ -50,36 +52,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-concurrent');
 
-  // logging task
-  grunt.registerMultiTask('log', 'Logging task', function() {
-    if (undefined !== this.data.message) {
-      grunt.log.writeln();
-      grunt.log.writeln((' ' + this.data.message + ' ').blue.inverse);
-    }
-  });
+  // custom tasks
+  require('./tasks/lib/log')(grunt);
 
-  // grouped tasks
-  grunt.registerTask('stylesheets',   ['clean:stylesheets', 'sass']);
-  grunt.registerTask('javascripts',   [
-    'clean:javascripts',
-    'jshint:javascripts',
-    'neuter:vendor',
-    'snockets:app',
-    'concat:dist',
-    'copy:javascripts'
-  ]);
-  grunt.registerTask('static_assets', ['clean:static_assets', 'copy:static_assets']);
-  grunt.registerTask('node_jshint',   ['jshint:node', 'jshint:test', 'notify:node_jshint', 'log:jshint']);
-
-  // common tasks
-  grunt.registerTask('compile', ['stylesheets', 'javascripts', 'static_assets', 'notify:compile']);
-  grunt.registerTask('assets',  ['stylesheets', 'javascripts', 'static_assets', 'jshint:node', 'notify:assets', 'watch']);
-  grunt.registerTask('server',  ['jshint:node', 'jshint:test', 'nodemon:dev', 'notify:nodemon']);
-  grunt.registerTask('test',    ['mochaTest:all', 'notify:test']);
-  grunt.registerTask('build',   ['stylesheets', 'javascripts', 'static_assets', 'jshint:node']);
-  grunt.registerTask('dev',     ['build', 'concurrent:development']);
-
-  // default task
-  grunt.registerTask('default', ['dev']);
+  // register tasks
+  require('./tasks/register')(grunt);
 
 };
