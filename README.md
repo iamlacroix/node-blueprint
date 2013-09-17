@@ -1,15 +1,20 @@
 # Node.js Blueprint
 
-## Prerequisites
+## Dependencies
 
-Ensure that you have [Node.js](http://nodejs.org/), and that [`grunt-cli`](https://github.com/gruntjs/grunt-cli) is installed globally. Then run `npm install`.
+- [Node.js](http://nodejs.org/)
+- [Grunt](https://github.com/gruntjs/grunt-cli) *for development*
+
+## Installation
+
+Git clone and run `npm install`.
 
 ## Usage
 
 **Running the development environment**  
 Runs the Node.js dev server and watches+compiles assets. Equivalent of running both `grunt server` and `grunt assets` separately:
 ```shell
-grunt dev
+grunt
 ```
 Then visit `http://localhost:7171`
 
