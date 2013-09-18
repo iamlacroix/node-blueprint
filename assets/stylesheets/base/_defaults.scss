@@ -5,7 +5,7 @@ body {
 }
 
 a {
-  @include transition(all 0.2s ease-in-out);
+  @include transition(all 0.1s linear);
 }
 
 p, a, h1, h2, h3, h4, h5, label {

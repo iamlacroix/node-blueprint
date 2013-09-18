@@ -18,10 +18,12 @@
 @import "base/forms";
 
 // Layout
-@import "layout/header";
-@import "layout/footer";
 @import "layout/containers";
 
 // Modules
+
+// Sections
+@import "sections/header";
+@import "sections/footer";
 
 // States

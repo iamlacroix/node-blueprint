@@ -19,3 +19,19 @@
     min-width: $breakpoint-ipad;
   }
 }
+
+// Bourbon Neat last-child utility
+.old-ie .u-ie-omega {
+  margin-right: 0 !important;
+}
+
+// Show a label on IE8/9 only
+label.u-ie-label {
+  display: none;
+
+  .ie8 &,
+  .ie9 & {
+    display: block;
+  }
+
+} // label.u-ie-label
