@@ -12,11 +12,11 @@
   "dependencies": {
     "express": "~3.x",
     "jade": "*",
-    "underscore": "~1.x",
     "asset-rack": "~2.x",
-    "dotenv": "*",
+    "lodash": "~2.0.0",
     "request": "~2.27.0",
-    "newrelic": "~0.10.1"
+    "newrelic": "~0.10.1",
+    "dotenv": "*"
   },
   "devDependencies": {
     "mocha": "1.x",
