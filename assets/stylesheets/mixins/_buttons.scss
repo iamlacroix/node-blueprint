@@ -2,10 +2,12 @@
  * Button style
  */
 @mixin btn-style($bg, $color, $border, $multiplier: 1) {
-  $delta: 7 * $multiplier;
+  $delta: 3 * $multiplier;
 
   border: none;
-  border-bottom: 1px solid $border;
+  @if $border != none {
+    border-bottom: 1px solid $border;
+  }
   border-radius: 3px;
   box-shadow: none;
   background: $bg;
@@ -17,14 +19,18 @@
   }
 
   &:hover {
-    border-color: lighten($border, 5);
+    @if $border != none {
+      border-color: lighten($border, 5);
+    }
     background: lighten($bg, $delta);
     color: $color;
   }
 
   &:active {
     border: none;
-    border-top: 1px solid $border;
+    @if $border != none {
+      border-top: 1px solid $border;
+    }
     background: darken($bg, $delta);
     color: $color;
   }
@@ -38,7 +44,9 @@
   &[disabled]:active {
     @include opacity(0.5);
     border: none;
-    border-bottom: 1px solid $border;
+    @if $border != none {
+      border-bottom: 1px solid $border;
+    }
     background: $bg;
   }
 
@@ -47,7 +55,7 @@
 /*
  * Button
  */
-@mixin btn($bg: #ddd, $color: #888, $border: #aaa, $multiplier: 1) {
+@mixin btn($bg: #e3e3e3, $color: #999, $border: #aaa, $multiplier: 1) {
   vertical-align: middle;
   display: inline-block;
   padding: 0.65em 1.25em;
