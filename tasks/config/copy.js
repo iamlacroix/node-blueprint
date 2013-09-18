@@ -20,7 +20,7 @@ module.exports = {
       {
         expand: true,
         cwd:  '<%= meta.sourcePath + meta.jsPath %>vendor/',
-        src:  ['selectivizr.js'],
+        src:  [],
         dest: '<%= meta.buildPath + meta.jsPath %>'
       }
     ]
