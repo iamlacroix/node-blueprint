@@ -2,7 +2,7 @@
 @mixin media-ie($args...) {
 
   @if length($args) > 0 {
-    @include media($args) {
+    @include media($args...) {
       @content;
     }
   }
