@@ -10,9 +10,9 @@ var port = 3003
   , url  = 'http://localhost:' + port;
 
 // drop the DB after all tests are complete
-after(function(done) {
-  app.db.connection.db.dropDatabase(done);
-});
+// after(function(done) {
+//   app.db.connection.db.dropDatabase(done);
+// });
 
 // export
 module.exports = {
