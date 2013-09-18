@@ -71,5 +71,5 @@
   "passfail"      : false,
   "white"         : false,
 
-  "predef"        : [ "log", "moment", "describe", "it", "before", "after", "beforeEach", "afterEach", "Modernizr", "angular" ]
+  "predef"        : [ "describe", "it", "before", "after", "beforeEach", "afterEach" ]
 }
