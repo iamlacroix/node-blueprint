@@ -12,19 +12,18 @@
   "dependencies": {
     "express": "~3.x",
     "jade": "*",
-    "moment": "~2.x",
     "underscore": "~1.x",
-    "mongoose": "~3.6.x",
     "asset-rack": "~2.x",
     "dotenv": "*",
-    "nodetime": "~0.8.13",
+    "request": "~2.27.0",
     "newrelic": "~0.10.1"
   },
   "devDependencies": {
-    "coffee-script": "*",
     "mocha": "1.x",
-    "should": "1.x",
-    "request": "*",
+    "chai": "~1.x",
+    "zombie": "~1.x",
+    "supertest": "~0.7.1",
+    "glob": "~3.2.6",
     "grunt": "~0.4.x",
     "grunt-contrib-jshint": "~0.6.x",
     "grunt-contrib-watch": "~0.4.x",
@@ -37,11 +36,7 @@
     "grunt-mocha-test": "~0.6.x",
     "grunt-neuter": "~0.5.x",
     "grunt-contrib-concat": "~0.3.x",
-    "chai": "~1.x",
-    "zombie": "~1.x",
-    "supertest": "~0.7.1",
     "grunt-concurrent": "~0.3.0",
-    "glob": "~3.2.6",
     "boarding-pass": "*"
   },
   "engines": {
