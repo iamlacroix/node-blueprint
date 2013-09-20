@@ -15,7 +15,8 @@ module.exports = {
       cwd: path.join(__dirname, '..', '..'),
       env: {
         PORT: '7171',
-        NODE_ENV: 'development'
+        NODE_ENV: 'development',
+        CPU_CORES: '2'
       }
     }
   }
