@@ -21,6 +21,9 @@ if (cluster.isMaster) {
 
   var app = module.exports = express();
 
+  // config
+  require('./config/env')(app, express);
+
   // assets
   app.use(express.compress());
   require('./config/assets')(app);
@@ -42,9 +45,6 @@ if (cluster.isMaster) {
     res.cookie('XSRF-TOKEN', req.csrfToken());
     next();
   });
-
-  // config
-  require('./config/env')(app, express);
 
   // include any custom middleware before this app.router
   app.use(app.router);
