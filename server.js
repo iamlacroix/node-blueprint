@@ -1,5 +1,6 @@
 var cluster = require('cluster')
-  , cores   = process.env.CPU_CORES || 4;
+  , cores   = process.env.CPU_CORES || 4
+  ;
 
 if (cluster.isMaster) {
   for (var i = 0; i < cores; i++)
@@ -7,17 +8,18 @@ if (cluster.isMaster) {
 } else {
 
   // new relic
-  if(process.env.NEW_RELIC_LICENSE_KEY) {
+  if (process.env.NEW_RELIC_LICENSE_KEY) {
     require('newrelic');
   }
 
   var express  = require('express')
     , http     = require('http')
-    , path     = require('path');
+    , path     = require('path')
     // , util     = require('util')
     // , moment   = require('moment')
     // , rack     = require('asset-rack')
     // , mongoose = require('mongoose');
+    ;
 
   var app = module.exports = express();
 
@@ -40,7 +42,7 @@ if (cluster.isMaster) {
   app.use(express.csrf());
 
   // csrf
-  app.use(function(req, res, next){
+  app.use(function (req, res, next) {
     res.locals.token = req.csrfToken();
     res.cookie('XSRF-TOKEN', req.csrfToken());
     next();
@@ -70,7 +72,7 @@ if (cluster.isMaster) {
 
   // start server
   if (!module.parent) {
-    http.createServer(app).listen(app.get('port'), function() {
+    http.createServer(app).listen(app.get('port'), function () {
       console.log('Server listening on port ' + app.get('port'));
     });
   }

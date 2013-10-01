@@ -7,7 +7,8 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "test": "npm test"
+    "test": "npm test",
+    "postinstall": "echo \"postinstall!\""
   },
   "dependencies": {
     "express": "3.x",
