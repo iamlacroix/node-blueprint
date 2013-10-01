@@ -2,7 +2,7 @@ var cluster = require('cluster')
   , cores   = process.env.CPU_CORES || 4
   ;
 
-if (cluster.isMaster) {
+if (cluster.isMaster && !module.parent) {
   for (var i = 0; i < cores; i++)
     cluster.fork();
 } else {
