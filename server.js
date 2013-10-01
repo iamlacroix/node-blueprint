@@ -39,14 +39,16 @@ if (cluster.isMaster && !module.parent) {
   app.use(express.methodOverride());
   app.use(express.cookieParser());
   app.use(express.cookieSession({ secret: '_nodejs_blueprint_b2685bd0cb02e1049a903e3359c3903e3bbe' }));
-  app.use(express.csrf());
 
-  // csrf
-  app.use(function (req, res, next) {
-    res.locals.token = req.csrfToken();
-    res.cookie('XSRF-TOKEN', req.csrfToken());
-    next();
-  });
+  // csrf - unless testing
+  if ('test' !== app.get('env')) {
+    app.use(express.csrf());
+    app.use(function (req, res, next) {
+      res.locals.token = req.csrfToken();
+      res.cookie('XSRF-TOKEN', req.csrfToken());
+      next();
+    });
+  }
 
   // include any custom middleware before this app.router
   app.use(app.router);
