@@ -16,7 +16,7 @@
     "asset-rack": "2.x",
     "lodash": "2.x",
     "request": "2.x",
-    "newrelic": "0.11.x",
+    "newrelic": "1.x",
     "dotenv": "*"
   },
   "devDependencies": {
