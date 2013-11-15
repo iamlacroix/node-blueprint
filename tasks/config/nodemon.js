@@ -16,7 +16,7 @@ module.exports = {
       env: {
         PORT: '7171',
         NODE_ENV: 'development',
-        CPU_CORES: '2'
+        CPU_CORES: '1'
       }
     }
   }
