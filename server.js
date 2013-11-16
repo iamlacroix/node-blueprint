@@ -1,5 +1,5 @@
 var cluster = require('cluster')
-  , cores   = process.env.CPU_CORES || 4
+  , cores   = process.env.CPU_CORES || 1
   ;
 
 if (cluster.isMaster && !module.parent) {
