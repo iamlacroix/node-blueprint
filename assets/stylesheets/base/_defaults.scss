@@ -1,8 +1,5 @@
 // Basic Elements
-body {
-  font-family: $typeface-sans;
-  text-shadow: 1px 1px 1px transparent;
-}
+body {}
 
 a {
   @include transition(all 0.1s linear);

@@ -50,37 +50,10 @@ html(lang="en")
     // script.
     //   try{Typekit.load();}catch(e){}
 
-    //- Google Analytics
-    //- -- set environment variables for GOOGLE_ANALYTICS_KEY and GOOGLE_ANALYTICS_DOMAIN
-    if process.env.GOOGLE_ANALYTICS_KEY && process.env.GOOGLE_ANALYTICS_DOMAIN
-      script.
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-        ga('create', '#{process.env.GOOGLE_ANALYTICS_KEY}', '#{process.env.GOOGLE_ANALYTICS_DOMAIN}');
-        ga('send', 'pageview');
-
-    //- Gauges
-    //- -- set environment variable for GAUGES_KEY
-    if process.env.GAUGES_KEY
-      script.
-        var _gauges = _gauges || [];
-        (function() {
-          var t   = document.createElement('script');
-          t.type  = 'text/javascript';
-          t.async = true;
-          t.id    = 'gauges-tracker';
-          t.setAttribute('data-site-id', '#{process.env.GAUGES_KEY}');
-          t.src = '//secure.gaug.es/track.js';
-          var s = document.getElementsByTagName('script')[0];
-          s.parentNode.insertBefore(t, s);
-        })();
-
+    include ./_analytics
 
   body
-    include _mixins
+    include ../_mixins
     block content
 
     //- markup examples

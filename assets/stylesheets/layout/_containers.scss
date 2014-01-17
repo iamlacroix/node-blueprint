@@ -6,13 +6,13 @@
 }
 
 .l-main {
-  @include media($breakpoint-ipad) {
+  @include media-ie($breakpoint-ipad) {
     @include span-columns(8);
   }
 }
 
 .l-sidebar {
-  @include media($breakpoint-ipad) {
+  @include media-ie($breakpoint-ipad) {
     @include span-columns(4);
   }
 }
