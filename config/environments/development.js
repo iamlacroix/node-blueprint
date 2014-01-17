@@ -1,8 +1,9 @@
 var express = require('express'),
+    dotenv  = require('dotenv'),
     dbName  = 'nodejs_blueprint';
 
 module.exports = function (app) {
-  require('dotenv')().load();
+  dotenv.load();
 
   // email
   var transport = require('../email/preview');

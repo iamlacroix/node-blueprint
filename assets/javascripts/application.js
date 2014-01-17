@@ -1,5 +1,7 @@
-//= require features/svg.js
+require('es5-shim');
+require('es5-shim/es5-sham');
 
-jQuery(function() {
-  // console.log("Testing...");
-});
+// TODO: remove
+// var moment = require('moment');
+// console.log(process.env.NODE_ENV);
+// console.log(moment());

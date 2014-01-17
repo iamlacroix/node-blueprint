@@ -1,9 +1,11 @@
+var controllers = require('../app/controllers');
+
 module.exports = function(app) {
-  app.get('/', require('../lib/controllers/static').index);
-  // app.get('/model', require('../lib/controllers/model').index);
-  // app.get('/model/new', require('../lib/controllers/model').new);
-  // app.post('/model/new', require('../lib/controllers/model').create);
-  // app.get('/model/:id', require('../lib/controllers/model').show);
-  // app.get('/model/:id/edit', require('../lib/controllers/model').edit);
-  // app.post('/model/:id', require('../lib/controllers/model').update);
+  app.get('/', controllers.static.index);
+  // app.get('/model', require('../app/controllers/model').index);
+  // app.get('/model/new', require('../app/controllers/model').new);
+  // app.post('/model/new', require('../app/controllers/model').create);
+  // app.get('/model/:id', require('../app/controllers/model').show);
+  // app.get('/model/:id/edit', require('../app/controllers/model').edit);
+  // app.post('/model/:id', require('../app/controllers/model').update);
 };

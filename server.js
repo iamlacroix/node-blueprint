@@ -3,6 +3,8 @@ var cluster = require('cluster'),
     express = require('express'),
     http    = require('http');
 
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
 if (cluster.isMaster && !module.parent) {
   for (var i = 0; i < cores; i++)
     cluster.fork();

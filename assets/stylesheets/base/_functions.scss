@@ -1,5 +1,5 @@
 @function image-path($path){
-  @return "../images/#{$path}";
+  @return "/images/#{$path}";
 }
 
 @function image-url($path){
@@ -7,5 +7,5 @@
 }
 
 @function font-path($path){
-  @return "../fonts/#{$path}";
+  @return "/fonts/#{$path}";
 }

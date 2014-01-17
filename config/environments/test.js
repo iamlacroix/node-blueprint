@@ -1,7 +1,8 @@
-var dbName  = 'nodejs_blueprint';
+var dotenv  = require('dotenv'),
+    dbName  = 'nodejs_blueprint';
 
 module.exports = function (app) {
-  require('dotenv')().load();
+  dotenv.load();
 
   // email
   var transport = require('../email/test')(app);

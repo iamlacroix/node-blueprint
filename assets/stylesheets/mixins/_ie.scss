@@ -1,4 +1,9 @@
-// Prepend selectors with a class specific to old IE
+@mixin media-ie-only {
+  @media \0screen {
+    @content;
+  }
+}
+
 @mixin media-ie($args...) {
 
   @if length($args) > 0 {
@@ -7,7 +12,7 @@
     }
   }
 
-  .old-ie & {
+  @include media-ie-only {
     @content;
   }
 
@@ -15,23 +20,13 @@
 
 // Add min-width to containers for old IE
 @mixin ie-width {
-  .old-ie & {
+  @include media-ie-only {
     min-width: $breakpoint-ipad;
   }
 }
 
-// Bourbon Neat last-child utility
-.old-ie .u-ie-omega {
-  margin-right: 0 !important;
-}
-
-// Show a label on IE8/9 only
-label.u-ie-label {
-  display: none;
-
-  .ie8 &,
-  .ie9 & {
-    display: block;
+.ie-omega {
+  @include media-ie-only {
+    margin-right: 0 !important;
   }
-
-} // label.u-ie-label
+}
