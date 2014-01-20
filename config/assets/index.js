@@ -6,7 +6,7 @@ var path = require('path')
 module.exports = function (app) {
 
   var development = 'development' === app.get('env')
-    , production  = !development;
+    , production  = development;
 
   function assetPath (pathFragment) {
     return path.join(__dirname, '..', '..', 'assets', pathFragment);

@@ -5,48 +5,36 @@
   "author": "LaCroix Design Co. <info@lacroixdesign.net> (http://www.lacroixdesign.net)",
   "license": "MIT",
   "private": true,
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "npm test"
+    "test": "mocha --reporter spec --timeout 7000 --recursive --growl",
+    "dev": "PORT=7171 nodemon"
   },
   "dependencies": {
     "express": "~3.4.8",
     "jade": "~1.1.4",
     "dotenv": "~0.2.3",
     "lodash": "~2.4.1",
-    "asset-rack": "shopbeam/asset-rack#b8d8b48089ef024aaee1f2c05552ceebcfefb62d",
+    "asset-rack": "git://github.com/shopbeam/asset-rack.git#b8d8b48089ef024aaee1f2c05552ceebcfefb62d",
     "newrelic": "~1.2.0",
     "nodemailer": "~0.6.0",
     "errormailer": "~0.2.1",
     "boarding-pass": "lacroixdesign/boarding_pass",
     "node-sass": "~0.8.1",
     "browserify": "~3.20.0",
-    "es5-shim": "~2.3.0",
     "debowerify": "~0.5.2",
-    "moment": "~2.5.0",
-    "envify": "~1.0.1"
+    "envify": "~1.0.1",
+    "es5-shim": "~2.3.0",
+    "moment": "~2.5.0"
   },
   "devDependencies": {
     "mocha": "1.x",
     "chai": "1.x",
     "zombie": "1.x",
     "supertest": "0.7.x",
-    "glob": "3.x",
-    "grunt": "0.4.x",
-    "grunt-contrib-jshint": "0.6.x",
-    "grunt-contrib-watch": "0.4.x",
-    "grunt-contrib-clean": "0.4.x",
-    "grunt-contrib-copy": "0.4.x",
-    "grunt-sass": "0.6.x",
-    "grunt-notify": "git://github.com/iamlacroix/grunt-notify.git",
-    "grunt-snockets": "git://github.com/iamlacroix/grunt-snockets.git",
-    "grunt-nodemon": "0.x",
-    "grunt-mocha-test": "0.6.x",
-    "grunt-neuter": "0.5.x",
-    "grunt-contrib-concat": "0.3.x",
-    "grunt-concurrent": "0.3.x",
-    "boarding-pass": "*",
-    "mail-preview": "0.0.3"
+    "mail-preview": "0.0.3",
+    "nodemon": "~1.0.12"
   },
   "engines": {
     "node": "0.10.x",
