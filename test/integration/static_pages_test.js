@@ -1,6 +1,7 @@
 /*jshint expr: true*/
 
-var helper = require('../_wd.js');
+var helper = require('../helper.js');
+helper.wd();
 
 describe('Static Pages Integration', function() {
 

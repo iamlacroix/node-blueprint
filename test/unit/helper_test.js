@@ -1,7 +1,6 @@
 /*jshint expr: true*/
 
-var expect = require('chai').expect
-  , helper = require('../_helper.js')
+var helper = require('../helper.js')
   , app    = helper.app;
 
 describe('app.locals', function() {
