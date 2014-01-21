@@ -16,7 +16,7 @@
   "plusplus"      : false,
   "quotmark"      : false,
 
-  "undef"         : false,
+  "undef"         : true,
   "unused"        : true,
   "strict"        : false,
   "trailing"      : false,
@@ -71,5 +71,15 @@
   "passfail"      : false,
   "white"         : false,
 
-  "predef"        : [ "describe", "it", "before", "after", "beforeEach", "afterEach" ]
+  "predef"        : [
+    "describe",
+    "it",
+    "before",
+    "after",
+    "beforeEach",
+    "afterEach",
+    "expect",
+    "browser",
+    "server"
+  ]
 }

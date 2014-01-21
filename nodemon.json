@@ -3,9 +3,9 @@
   "ignore": [
     ".git",
     "node_modules/**/node_modules",
-    "bower_components",
-    "tmp",
-    "log"
+    "bower_components/**/*",
+    "tmp/**/*",
+    "log/**/*"
   ],
   "verbose": true,
   "watch": ["*.*"],

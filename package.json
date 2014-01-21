@@ -9,6 +9,7 @@
   "scripts": {
     "start": "node server.js",
     "test": "mocha --reporter spec --timeout 7000 --recursive --growl",
+    "e2e": "casperjs test test/integration",
     "dev": "PORT=7171 nodemon"
   },
   "dependencies": {
@@ -31,10 +32,10 @@
   "devDependencies": {
     "mocha": "1.x",
     "chai": "1.x",
-    "zombie": "1.x",
     "supertest": "0.7.x",
-    "mail-preview": "0.0.3",
-    "nodemon": "~1.0.12"
+    "wd": "~0.2.8",
+    "nodemon": "~1.0.12",
+    "mail-preview": "0.0.3"
   },
   "engines": {
     "node": "0.10.x",
