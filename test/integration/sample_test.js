@@ -3,7 +3,7 @@
 var helper = require('../helper.js');
 helper.wd();
 
-describe('Static Pages Integration', function() {
+describe('Sample integration tests', function() {
 
   describe('home page', function() {
 
