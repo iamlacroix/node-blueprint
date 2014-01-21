@@ -1,18 +1,17 @@
 extends ./base
 
 block layout
-  body
-    include ../_mixins
-    block content
+  include ../_mixins
+  block content
 
-    //- markup examples
-    if isDevelopment()
-      p: small Development Environment
-    if isProduction()
-      p: small Production Environment
-    p: small NODE_ENV: #{process.env.NODE_ENV}
-    img(src=assets.url('/images/lacroix-logo.png'))
-    p: +icon('000')
-    p: a.btn(href="#") Standard Button
-    form(style="max-width: 20em;")
-      input(type="email", placeholder="Email address")
+  //- markup examples
+  if isDevelopment()
+    p: small Development Environment
+  if isProduction()
+    p: small Production Environment
+  p: small NODE_ENV: #{process.env.NODE_ENV}
+  img(src=assets.url('/images/lacroix-logo.png'))
+  p: +icon('000')
+  p: a.btn(href="#") Standard Button
+  form(style="max-width: 20em;")
+    input(type="email", placeholder="Email address")

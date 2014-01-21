@@ -6,7 +6,12 @@ var path = require('path')
 module.exports = function (app) {
 
   var development = 'development' === app.get('env')
-    , production  = development;
+    , production  = !development
+    , hash;
+
+  if (development) {
+    hash = false;
+  }
 
   function assetPath (pathFragment) {
     return path.join(__dirname, '..', '..', 'assets', pathFragment);
@@ -19,6 +24,7 @@ module.exports = function (app) {
     // transform: ['es6ify'],
     transform: ['reactify', 'envify'],
     // hash: production, // Leave this as 'undefined' so that it sends both
+    hash: hash,
     compress: production,
     gzip: production,
     watch: development
@@ -28,6 +34,7 @@ module.exports = function (app) {
     url: '/application.css',
     filename: assetPath('stylesheets/application.scss'),
     paths: boardingPass.includePaths,
+    hash: hash,
     compress: production,
     gzip: production,
     watch: development

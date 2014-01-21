@@ -17,7 +17,7 @@
     "jade": "~1.1.4",
     "dotenv": "~0.2.3",
     "lodash": "~2.4.1",
-    "asset-rack": "git://github.com/shopbeam/asset-rack.git#b8d8b48089ef024aaee1f2c05552ceebcfefb62d",
+    "asset-rack": "shopbeam/asset-rack#4f2363bf85a31f9a994365fae5d1704f8da3e434",
     "newrelic": "~1.2.0",
     "nodemailer": "~0.6.0",
     "errormailer": "~0.2.1",
