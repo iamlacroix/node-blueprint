@@ -17,7 +17,7 @@ module.exports = function (app) {
     filename: assetPath('javascripts/application.js'),
     // external: ['jquery', 'angular', 'lodash'],
     // transform: ['es6ify'],
-    transform: ['envify'],
+    transform: ['reactify', 'envify'],
     // hash: production, // Leave this as 'undefined' so that it sends both
     compress: production,
     gzip: production,

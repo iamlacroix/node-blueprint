@@ -5,7 +5,8 @@
     "node_modules/**/node_modules",
     "bower_components/**/*",
     "tmp/**/*",
-    "log/**/*"
+    "log/**/*",
+    "assets/**/*"
   ],
   "verbose": true,
   "watch": ["*.*"],

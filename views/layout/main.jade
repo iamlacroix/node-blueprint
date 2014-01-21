@@ -1,57 +1,6 @@
-doctype html
-html(lang="en")
-  //
-    *
-    *
-    *
-    *          ///   ///    ..oOOOo..
-    *         ///   ///  .:OOOOOOOOOOO:.
-    *        ///   ///  .OOOOOOOOOOOOOOO.
-    *       ///   ///   OOOOOOOOOOOOOOOOO
-    *      ///   ///    OOOOOOOOOOOOOOOOO
-    *     ///   ///     OOOOOOOOOOOOOOOOO
-    *    ///   ///      `OOOOOOOOOOOOOOO'
-    *   ///   ///        `:OOOOOOOOOOO:'
-    *  ///   ///            ''*OOO*''
-    *
-    *  Designed & Developed by LaCroix Design Co.
-    *    http://lacroixdesign.net
-    *
-    *
-    *
+extends ./base
 
-  head
-    meta(charset="utf-8")
-    meta(http-equiv="X-UA-Compatible", content="chrome=1")
-    meta(name="viewport", content="initial-scale=1.0, user-scalable=no, maximum-scale=1.0")
-    meta(name="apple-mobile-web-app-capable", content="yes")
-    meta(name="apple-mobile-web-app-status-bar-style", content="black")
-
-    title= pageTitle(title, "TODO: ADD SITE TITLE")
-    meta(name="description", content="TODO: ADD DESCRIPTION")
-    meta(name="author", content="Michael LaCroix, James LaCroix")
-
-    //- fav and touch icons (reside in the /public folder)
-    link(rel="shortcut icon", href="/favicon.ico")
-    link(rel="apple-touch-icon", href="/apple-touch-icon-57x57-precomposed.png")
-    link(rel="apple-touch-icon-precomposed", sizes="72x72", href="/apple-touch-icon-72x72-precomposed.png")
-    link(rel="apple-touch-icon-precomposed", sizes="114x114", href="/apple-touch-icon-114x114-precomposed.png")
-    link(rel="apple-touch-icon-precomposed", sizes="144x144", href="/apple-touch-icon-144x144-precomposed.png")
-    //- meta(name="msapplication-TileColor", content="#ffffff")
-    //- meta(name="msapplication-TileImage", content="/windows-icon.png")
-
-    != assets.tag('/application.css')
-    != assets.tag('/vendor/modernizr.js')
-    != assets.tag('/application.js')
-
-    //- Typekit
-    //- -- replace VVVVVVV with the proper kit code
-    // script(type="text/javascript", src="//use.typekit.net/VVVVVVV.js")
-    // script.
-    //   try{Typekit.load();}catch(e){}
-
-    include ./_analytics
-
+block layout
   body
     include ../_mixins
     block content

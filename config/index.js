@@ -50,6 +50,9 @@ module.exports = function (app) {
     useCsrf(app);
   }
 
+  // add React server-side rendering
+  app.use(require('../lib/react-renderer'));
+
   // include any custom middleware before this app.router
   app.use(app.router);
   app.use(express.static(path.join(__dirname, '..', 'public')));

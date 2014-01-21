@@ -25,9 +25,13 @@
     "node-sass": "~0.8.1",
     "browserify": "~3.20.0",
     "debowerify": "~0.5.2",
-    "envify": "~1.0.1",
+    "envify": "~0.2.0",
     "es5-shim": "~2.3.0",
-    "moment": "~2.5.0"
+    "react": "~0.8.0",
+    "moment": "~2.5.0",
+    "domready": "~0.2.13",
+    "node-jsx": "~0.2.0",
+    "reactify": "~0.5.0"
   },
   "devDependencies": {
     "mocha": "1.x",
