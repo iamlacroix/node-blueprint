@@ -1,5 +1,7 @@
 var path = require('path')
   , rack = require('asset-rack')
+  , glob = require('glob')
+  , _    = require('lodash')
   , SassAsset    = require('./rack-node-sass')
   , boardingPass = require('boarding-pass');
 
@@ -11,6 +13,14 @@ module.exports = function (app) {
 
   if (development) {
     hash = false;
+  }
+
+  function watchFoldersFor (pattern) {
+    var files = glob.sync(assetPath(pattern));
+    var dirs = files.map(function (file) {
+      return path.dirname(path.resolve(file));
+    });
+    return _.uniq(dirs);
   }
 
   function assetPath (pathFragment) {
@@ -27,7 +37,8 @@ module.exports = function (app) {
     hash: hash,
     compress: production,
     gzip: production,
-    watch: development
+    watch: development,
+    toWatch: watchFoldersFor('javascripts/**/*')
   });
 
   var sassAsset = new SassAsset({
@@ -37,7 +48,8 @@ module.exports = function (app) {
     hash: hash,
     compress: production,
     gzip: production,
-    watch: development
+    watch: development,
+    toWatch: watchFoldersFor('stylesheets/**/*')
   });
 
   var imageAssets = new rack.StaticAssets({

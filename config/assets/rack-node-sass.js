@@ -37,7 +37,7 @@ var SassAsset = Asset.extend({
       throw new Error('Invalid options');
     }
     this.filename = path.resolve(options.filename);
-    this.toWatch = path.dirname(this.filename);
+    this.toWatch = options.toWatch || path.dirname(this.filename);
     return sass.render({
       file: this.filename,
       includePaths: (_ref = options.paths) !== null ? _ref : [path.dirname(options.filename)],
