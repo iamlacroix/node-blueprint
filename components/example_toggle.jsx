@@ -1,3 +1,5 @@
+/** @jsx React.DOM */
+
 var React = require('react');
 
 var ExampleToggle = React.createClass({
@@ -18,7 +20,8 @@ var ExampleToggle = React.createClass({
       className: 'btn'
     };
     var buttonTitle = (this.state.ready) ? 'Ready!' : 'Sending...';
-    return React.DOM.button(attrs, buttonTitle);
+    // return React.DOM.button(attrs, buttonTitle);
+    return <button>{buttonTitle}</button>;
   }
 });
 
